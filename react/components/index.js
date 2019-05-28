@@ -23,26 +23,26 @@ function splitLocale(locale) {
   return locale.split('-')[0]
 }
 
-function getSupportedLangs(languages) {
+function getSupportedLangs(data) {
   let supported = []
-  languages.forEach(language => {
-    if (language.split("-").length > 1) {
-      supported.push({
-        text: splitLocale(language),
-        id: language
-      })
-    }
-  })
-  return supported
+  if (data && data.languages) {
+    const languages = data.languages.supported
+    languages.forEach(language => {
+      if (language.split("-").length > 1) {
+        supported.push({
+          text: splitLocale(language),
+          id: language
+        })
+      }
+    })
+  }
+  return supported.length > 0 ? supported : supportedLanguages
 }
 
 const LocaleSwitcher = ({ data }) => {
-  const supportedLangs = data.languages ? getSupportedLangs(data.languages.supported) : supportedLanguages
+  const supportedLangs = getSupportedLangs(data)
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
-  const [selectedLocale, setSelectedLocale] = useState(
-    findLocale(culture.locale)
-  )
 
   function findLocale(locale) {
     const localeObj = supportedLangs.find(
@@ -50,6 +50,9 @@ const LocaleSwitcher = ({ data }) => {
     )
     return localeObj || supportedLangs[0]
   }
+  const [selectedLocale, setSelectedLocale] = useState(
+    findLocale(culture.locale)
+  )
 
   const handleLocaleClick = id => {
     emitter.emit('localesChanged', id)
