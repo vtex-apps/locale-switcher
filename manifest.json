@@ -1,20 +1,22 @@
 {
   "vendor": "vtex",
-  "name": "base-store-component",
-  "version": "0.0.1",
-  "title": "IO Base Component",
-  "description": "IO Base component",
+  "name": "locale-switcher",
+  "version": "0.1.1",
+  "title": "Locale Switcher",
+  "description": "Locale Switcher",
   "defaultLocale": "pt-BR",
   "builders": {
     "messages": "1.x",
     "store": "0.x",
     "react": "3.x"
   },
-  "mustUpdateAt": "2019-04-02",
+  "mustUpdateAt": "2019-05-28",
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.styleguide": "9.x"
-  }
+    "vtex.styleguide": "9.x",
+    "vtex.store-icons": "0.x"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
