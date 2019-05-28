@@ -9,7 +9,8 @@
     "ramda": "^0.26.1",
     "react": "^16.8.3",
     "react-intl": "^2.7.2",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "react-apollo": "~2.5.2"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
