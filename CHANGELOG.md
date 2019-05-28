@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## Changed
-- Removed `injectIntl` from example
-
-- **Component** Create the VTEX Store Component _IO Base App_
+## [0.1.0] - 2019-05-28
+### Added
+- Add `LocaleSwitcher` component.
