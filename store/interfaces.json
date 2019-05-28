@@ -1,5 +1,5 @@
 {
-  "locale-switcher": {
-    "component": "LocaleSwitcher"
+  "base-store-component": {
+    "component": "Example"
   }
 }
