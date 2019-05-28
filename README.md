@@ -32,4 +32,4 @@ For now this block does not have any required or optional blocks.
 
 
 ### Styles API
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api) of store-components.

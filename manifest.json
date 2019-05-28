@@ -2,15 +2,15 @@
   "vendor": "vtex",
   "name": "locale-switcher",
   "version": "0.0.1",
-  "title": "IO Base Component",
-  "description": "IO Base component",
+  "title": "Locale Switcher",
+  "description": "Locale Switcher",
   "defaultLocale": "pt-BR",
   "builders": {
     "messages": "1.x",
     "store": "0.x",
     "react": "3.x"
   },
-  "mustUpdateAt": "2019-04-02",
+  "mustUpdateAt": "2019-05-28",
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
