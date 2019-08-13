@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Make locale switcher lazy.
+
 ## [0.1.2] - 2019-06-27
 ### Fixed
 - Build assets with new builder hub.
