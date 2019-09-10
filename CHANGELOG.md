@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Make render strategy `client`, i.e. component assets are fetched client-side with same priority as server-side blocks.
+
 ## [0.2.1] - 2019-08-29
 
 ## [0.2.0] - 2019-08-14
