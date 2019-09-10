@@ -1,6 +1,6 @@
 {
   "locale-switcher": {
     "component": "LocaleSwitcher",
-    "render": "lazy"
+    "render": "client"
   }
 }
