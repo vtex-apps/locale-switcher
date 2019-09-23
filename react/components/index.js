@@ -1,58 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { graphql } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 import { IconGlobe } from 'vtex.store-icons'
 import Locales from './queries/locales.gql'
 
-const supportedLanguages = [
-  {
-    text: 'EN',
-    id: 'en-US',
-  },
-  {
-    text: 'PT',
-    id: 'pt-BR',
-  },
-  {
-    text: 'ES',
-    id: 'es-AR',
-  },
-]
-
-function splitLocale(locale) {
-  return locale.split('-')[0]
+function getLabel(localeId) {
+  return localeId.split('-')[0]
 }
 
-function getSupportedLangs(data) {
-  let supported = []
-  if (data && data.languages) {
-    const languages = data.languages.supported
-    languages.forEach(language => {
-      if (language.split("-").length > 1) {
-        supported.push({
-          text: splitLocale(language),
-          id: language
-        })
-      }
-    })
+function getSupportedLanguages(data) {
+  if (data.loading || data.error || !data.languages || !data.languages.supported) {
+    return []
   }
-  return supported.length > 0 ? supported : supportedLanguages
+
+  const supportedLanguages = data.languages.supported.reduce((acc, lang) => {
+    if (!lang.includes('-')) {
+      return acc
+    }
+
+    return acc.concat({
+      text: getLabel(lang),
+      localeId: lang
+    })
+  }, [])
+
+  return supportedLanguages
 }
 
 const LocaleSwitcher = ({ data }) => {
-  const supportedLangs = getSupportedLangs(data)
+  const supportedLangs = useMemo(() => getSupportedLanguages(data), [data])
+
   const { culture, emitter } = useRuntime()
+
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
 
-  function findLocale(locale) {
+  const [selectedLocale, setSelectedLocale] = useState(null)
+
+  useEffect(() => {
     const localeObj = supportedLangs.find(
-      ({ id }) => splitLocale(id) === splitLocale(locale)
+      ({ localeId }) => getLabel(localeId) === getLabel(culture.locale)
     )
-    return localeObj || supportedLangs[0]
-  }
-  const [selectedLocale, setSelectedLocale] = useState(
-    findLocale(culture.locale)
-  )
+    const selectedLocale = localeObj || supportedLangs && supportedLangs[0]
+
+    setSelectedLocale(selectedLocale)
+  }, [supportedLangs, culture.locale])
 
   const handleLocaleClick = id => {
     emitter.emit('localesChanged', id)
@@ -62,6 +53,10 @@ const LocaleSwitcher = ({ data }) => {
 
   const handleMouseDown = e => {
     e.preventDefault()
+  }
+
+  if (supportedLangs.length === 0 || !selectedLocale) {
+    return null
   }
 
   return (
@@ -79,13 +74,13 @@ const LocaleSwitcher = ({ data }) => {
         className="absolute z-5 list top-1 w3 ph0 mh0 mv4 bg-base"
       >
         {supportedLangs
-        .filter(({ id }) => id !== selectedLocale.id)
-        .map(({ id, text }) => (
+        .filter(({ localeId }) => localeId !== selectedLocale.localeId)
+        .map(({ localeId, text }) => (
           <li
             className="t-action--small pointer f5 pa3 hover-bg-muted-5 tc"
-            onClick={() => handleLocaleClick(id)}
+            onClick={() => handleLocaleClick(localeId)}
             onMouseDown={handleMouseDown}
-            key={id}
+            key={localeId}
           >
             {text}
           </li>
