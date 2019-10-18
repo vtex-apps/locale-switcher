@@ -1,3 +1,3 @@
-import LocaleSwitcher from './components/index'
+import LocaleSwitcher from './components'
 
 export default LocaleSwitcher
