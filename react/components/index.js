@@ -3,6 +3,9 @@ import { graphql } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 import { IconGlobe } from 'vtex.store-icons'
 import Locales from './queries/locales.gql'
+import { useCssHandles } from 'vtex.css-handles'
+
+const CSS_HANDLES = ['container', 'button', 'buttonText', 'list', 'listElement']
 
 function getLabel(localeId) {
   return localeId.split('-')[0]
@@ -29,12 +32,10 @@ function getSupportedLanguages(data) {
 
 const LocaleSwitcher = ({ data }) => {
   const supportedLangs = useMemo(() => getSupportedLanguages(data), [data])
-
   const { culture, emitter } = useRuntime()
-
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
-
   const [selectedLocale, setSelectedLocale] = useState(null)
+  const handles = useCssHandles(CSS_HANDLES)
 
   useEffect(() => {
     const localeObj = supportedLangs.find(
@@ -59,28 +60,34 @@ const LocaleSwitcher = ({ data }) => {
     return null
   }
 
+  const containerClasses = `${handles.container} w3 flex items-center justify-end ml2 mr3 relative`
+  const buttonClasses = `${handles.button} link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base`
+  const buttonTextClasses = `${handles.buttonText} pl2 t-action--small order-1`
+  const listClasses = `${handles.list} absolute z-5 list top-1 w3 ph0 mh0 mv4 bg-base`
+  const listElementClasses = `${handles.listelement} t-action--small pointer f5 pa3 hover-bg-muted-5 tc`
+
   return (
-    <div className="w3 flex items-center justify-end ml2 mr3 relative">
+    <div className={containerClasses}>
       <button
-        onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
+        className={buttonClasses}
         onBlur={() => setOpenLocaleSelector(false)}
-        className="link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base"
+        onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
       >
         <IconGlobe />
-        <span className="pl2 t-action--small order-1">{selectedLocale.text}</span>
+        <span className={buttonTextClasses}>{selectedLocale.text}</span>
       </button>
       <ul
         hidden={!openLocaleSelector}
-        className="absolute z-5 list top-1 w3 ph0 mh0 mv4 bg-base"
+        className={listClasses}
       >
         {supportedLangs
         .filter(({ localeId }) => localeId !== selectedLocale.localeId)
         .map(({ localeId, text }) => (
           <li
-            className="t-action--small pointer f5 pa3 hover-bg-muted-5 tc"
-            onClick={() => handleLocaleClick(localeId)}
-            onMouseDown={handleMouseDown}
             key={localeId}
+            onMouseDown={handleMouseDown}
+            className={listElementClasses}
+            onClick={() => handleLocaleClick(localeId)}
           >
             {text}
           </li>
