@@ -33,7 +33,7 @@ For now this block does not have any required or optional blocks.
 
 ### Styles API
 
-| Css handles |
+| CSS handles |
 | --- |
 | container |
 | button |
