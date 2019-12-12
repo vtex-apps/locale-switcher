@@ -4,6 +4,7 @@ import { useRuntime } from 'vtex.render-runtime'
 import { IconGlobe } from 'vtex.store-icons'
 import Locales from './queries/locales.gql'
 import { useCssHandles } from 'vtex.css-handles'
+import { path } from 'ramda'
 
 const CSS_HANDLES = ['container', 'button', 'buttonText', 'list', 'listElement']
 
@@ -12,11 +13,14 @@ function getLabel(localeId) {
 }
 
 function getSupportedLanguages(data) {
-  if (data.loading || data.error || !data.languages || !data.languages.supported) {
+  if (data.loading || data.error) {
     return []
   }
 
-  const supportedLanguages = data.languages.supported.reduce((acc, lang) => {
+
+  const supportedLanguages = path(['currentBinding', 'supportedLocales'], data) || path(['languages', 'supported'], data) || []
+  
+  return supportedLanguages.reduce((acc, lang) => {
     if (!lang.includes('-')) {
       return acc
     }
@@ -26,8 +30,6 @@ function getSupportedLanguages(data) {
       localeId: lang
     })
   }, [])
-
-  return supportedLanguages
 }
 
 const LocaleSwitcher = ({ data }) => {

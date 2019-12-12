@@ -3,4 +3,7 @@ query Locales {
     default
     supported
   }
+   currentBinding {
+    supportedLocales
+  }
 }
