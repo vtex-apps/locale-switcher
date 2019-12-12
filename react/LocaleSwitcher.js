@@ -17,7 +17,6 @@ function getSupportedLanguages(data) {
     return []
   }
 
-
   const supportedLanguages = path(['currentBinding', 'supportedLocales'], data) || path(['languages', 'supported'], data) || []
   
   return supportedLanguages.reduce((acc, lang) => {
