@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "locale-switcher",
-  "version": "0.3.0",
+  "version": "0.4.0-beta.1",
   "title": "Locale Switcher",
   "description": "Locale Switcher",
   "defaultLocale": "pt-BR",
@@ -18,7 +18,8 @@
   "dependencies": {
     "vtex.styleguide": "9.x",
     "vtex.store-icons": "0.x",
-    "vtex.css-handles": "0.x"
+    "vtex.css-handles": "0.x",
+    "vtex.tenant-graphql": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
