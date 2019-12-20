@@ -31,20 +31,26 @@ function getSupportedLanguages(data) {
   }, [])
 }
 
+const getSelectedLocale = (supportedLangs, locale) => {
+  const localeObj = supportedLangs.find(
+    ({ localeId }) => getLabel(localeId) === getLabel(locale)
+  )
+  return localeObj || supportedLangs && supportedLangs[0]
+}
+
 const LocaleSwitcher = ({ data }) => {
   const supportedLangs = useMemo(() => getSupportedLanguages(data), [data])
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
-  const [selectedLocale, setSelectedLocale] = useState(null)
+  const [selectedLocale, setSelectedLocale] = useState(getSelectedLocale(supportedLangs, culture && culture.locale))
   const handles = useCssHandles(CSS_HANDLES)
 
   useEffect(() => {
-    const localeObj = supportedLangs.find(
-      ({ localeId }) => getLabel(localeId) === getLabel(culture.locale)
-    )
-    const selectedLocale = localeObj || supportedLangs && supportedLangs[0]
+    const newSelectedLocale = getSelectedLocale(supportedLangs, culture.locale)
 
-    setSelectedLocale(selectedLocale)
+    if (newSelectedLocale !== selectedLocale) {
+      setSelectedLocale(selectedLocale)
+    }
   }, [supportedLangs, culture.locale])
 
   const handleLocaleClick = id => {
