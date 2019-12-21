@@ -31,7 +31,7 @@ function getSupportedLanguages(data) {
   }, [])
 }
 
-const getSelectedLocale = (supportedLangs, locale) => {
+const getLocale = (supportedLangs, locale) => {
   const localeObj = supportedLangs.find(
     ({ localeId }) => getLabel(localeId) === getLabel(locale)
   )
@@ -42,11 +42,11 @@ const LocaleSwitcher = ({ data }) => {
   const supportedLangs = useMemo(() => getSupportedLanguages(data), [data])
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
-  const [selectedLocale, setSelectedLocale] = useState(getSelectedLocale(supportedLangs, culture && culture.locale))
+  const [selectedLocale, setSelectedLocale] = useState(getLocale(supportedLangs, culture && culture.locale))
   const handles = useCssHandles(CSS_HANDLES)
 
   useEffect(() => {
-    const newSelectedLocale = getSelectedLocale(supportedLangs, culture.locale)
+    const newSelectedLocale = getLocale(supportedLangs, culture.locale)
 
     if (newSelectedLocale !== selectedLocale) {
       setSelectedLocale(selectedLocale)
@@ -56,7 +56,7 @@ const LocaleSwitcher = ({ data }) => {
   const handleLocaleClick = id => {
     emitter.emit('localesChanged', id)
     setOpenLocaleSelector(false)
-    setSelectedLocale(findLocale(id))
+    setSelectedLocale(getLocale(supportedLangs, id))
   }
 
   const handleMouseDown = e => {
