@@ -42,7 +42,7 @@ const LocaleSwitcher = ({ data }) => {
   const supportedLangs = useMemo(() => getSupportedLanguages(data), [data])
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
-  const [selectedLocale, setSelectedLocale] = useState(getLocale(supportedLangs, culture && culture.locale))
+  const [selectedLocale, setSelectedLocale] = useState(() => getLocale(supportedLangs, culture && culture.locale))
   const handles = useCssHandles(CSS_HANDLES)
 
   useEffect(() => {
