@@ -18,6 +18,8 @@ You should follow the usage instruction in the main [README](/README.md#usage).
 
 Then, add `locale-switcher` block into your app theme, as we do in our [Header app](https://github.com/vtex-apps/store-header/blob/master/store/blocks.json)
 
+If you have more than one language configured for your account, you can pass the following query string `cultureInfo=<locale>` to switch to other locale.
+
 ### Blocks API
 
 When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `LocaleSwitcher` and describes if they are required or optional.
