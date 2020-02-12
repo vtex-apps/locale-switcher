@@ -1,35 +1,43 @@
-# LocaleSwitcher
+📢 Use this project, [contribute](https://github.com/vtex-apps/locale-switcher) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Locale Switcher
 
-`LocaleSwitcher` is a VTEX component that changes the language of the store. 
-This component can be imported and used by any VTEX app.
+The VTEX LocaleSwitcher is a VTEX component capable of changing the current language of the store.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+![img-locale-switcher](https://user-images.githubusercontent.com/27777263/74359290-c2b5f700-4da1-11ea-8612-c05ccf1988d5.png)
 
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-  - [Styles API](#styles-api)
+## Configuration
 
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Then, add `locale-switcher` block into your app theme, as we do in our [Header app](https://github.com/vtex-apps/store-header/blob/master/store/blocks.json)
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `LocaleSwitcher` and describes if they are required or optional.
+1. Import the locale-switcher's app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
-  "locale-switcher": {
-    "component": "LocaleSwitcher"
-  }
+"dependencies": {
+  "vtex.locale-switcher": "0.x"
+}
 ```
 
-For now this block does not have any required or optional blocks.
+2. Add the `locale-switcher` block to your header. For example:
 
+```jsonc
+"header-row#desktop": {
+  "children": [
+    // (...)
+    "locale-switcher",
+    "login",
+    "minicart.v2"
+  ]
+},
+```
 
-### Styles API
-You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api) of store-components.
+## Customization
+
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+
+| CSS Handles    |
+| -------------- |
+| `buttonText`   |
+| `button`       |
+| `listElement`  |
+| `list`         |
+| `localeIdText` |
+| `container`    |
