@@ -4,7 +4,7 @@ import { useRuntime } from 'vtex.render-runtime'
 import { IconGlobe } from 'vtex.store-icons'
 import { useCssHandles } from 'vtex.css-handles'
 
-import Locales from './queries/locales.gql'
+import Locales from './graphql/locales.gql'
 
 const CSS_HANDLES = [
   'container',
