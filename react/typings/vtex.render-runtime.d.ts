@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* Typings for `render-runtime` */
 declare module 'vtex.render-runtime' {
   import { Component, ComponentType, ReactElement, ReactType } from 'react'
