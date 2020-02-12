@@ -18,10 +18,10 @@ The VTEX LocaleSwitcher is a VTEX component capable of changing the current lang
 
 2. Add the `locale-switcher` block to your header. For example:
 
-```json
+```jsonc
 "header-row#desktop": {
   "children": [
-    ...
+    // (...)
     "locale-switcher",
     "login",
     "minicart.v2"

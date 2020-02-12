@@ -34,51 +34,49 @@ function getLabel(localeId: string) {
   return localeId.split('-')[0]
 }
 
+function getLocale(supportedLangs: SupportedLanguage[], locale: string) {
+  const localeObj = supportedLangs.find(
+    ({ localeId }) => getLabel(localeId) === getLabel(locale)
+  )
+  return (
+    localeObj ??
+    (supportedLangs?.[0] || {
+      text: getLabel(locale),
+      localeId: locale,
+    })
+  )
+}
+
+function getSupportedLangs(langs: string[]) {
+  return langs.reduce((acc: SupportedLanguage[], lang: string) => {
+    if (!lang.includes('-')) {
+      return acc
+    }
+
+    return acc.concat({
+      text: getLabel(lang),
+      localeId: lang,
+    })
+  }, [])
+}
+
 const LocaleSwitcher = () => {
   const { data, loading, error } = useQuery<LocalesQuery>(Locales)
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
 
-  const supportedLanguages: string[] =
-    (data &&
-      (data.currentBinding.supportedLocales || data?.languages.supported)) ||
-    []
-
-  const supportedLangs = supportedLanguages.reduce(
-    (acc: SupportedLanguage[], lang: string) => {
-      if (!lang.includes('-')) {
-        return acc
-      }
-
-      return acc.concat({
-        text: getLabel(lang),
-        localeId: lang,
-      })
-    },
-    []
-  )
-
-  const getLocale = (locale: string) => {
-    const localeObj = supportedLangs.find(
-      ({ localeId }) => getLabel(localeId) === getLabel(locale)
-    )
-    return (
-      localeObj ??
-      (supportedLangs?.[0] || {
-        text: getLabel(locale),
-        localeId: locale,
-      })
-    )
-  }
+  const supportedLanguages =
+    data?.currentBinding.supportedLocales ?? data?.languages.supported ?? []
+  const supportedLangs = getSupportedLangs(supportedLanguages)
 
   const [selectedLocale, setSelectedLocale] = useState(() =>
-    getLocale(culture?.locale)
+    getLocale(supportedLangs, culture?.locale)
   )
   const handles = useCssHandles(CSS_HANDLES)
 
   const handleLocaleClick = (id: SupportedLanguage['localeId']) => {
     setOpenLocaleSelector(false)
-    setSelectedLocale(getLocale(id))
+    setSelectedLocale(getLocale(supportedLangs, id))
     emitter.emit('localesChanged', id)
   }
 
