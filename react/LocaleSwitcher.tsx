@@ -66,7 +66,7 @@ const LocaleSwitcher = () => {
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
 
   const supportedLanguages =
-    data?.currentBinding?.supportedLocales ?? data?.languages.supported ?? []
+    data?.currentBinding?.supportedLocales ?? data?.languages?.supported ?? []
   const supportedLangs = getSupportedLangs(supportedLanguages)
 
   const [selectedLocale, setSelectedLocale] = useState(() =>
