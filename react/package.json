@@ -23,12 +23,7 @@
     "@vtex/test-tools": "^0.2.0",
     "apollo-client": "^2.5.1",
     "prettier": "^1.16.4",
-    "typescript": "3.7.3",
-    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.1/public/@types/vtex.css-handles",
-    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.109.3/public/@types/vtex.styleguide",
-    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.91.0/public/@types/vtex.render-runtime",
-    "vtex.tenant-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.tenant-graphql@0.1.1/public/@types/vtex.tenant-graphql",
-    "vtex.store-icons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.16.0/public/@types/vtex.store-icons"
+    "typescript": "3.7.3"
   },
   "version": "0.5.1"
 }
