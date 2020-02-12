@@ -8,26 +8,27 @@
     "classnames": "^2.2.6",
     "ramda": "^0.26.1",
     "react": "^16.8.3",
-    "react-intl": "^2.7.2",
+    "react-intl": "3.9.1",
     "react-dom": "^16.8.3",
-    "react-apollo": "~2.5.2"
+    "react-apollo": "^3.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/graphql": "^14.2.0",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.0",
-    "@types/prop-types": "^15.7.0",
     "@types/ramda": "^0.26.5",
     "@types/react": "^16.8.10",
     "@types/react-intl": "^2.3.17",
     "@vtex/test-tools": "^0.2.0",
     "apollo-client": "^2.5.1",
-    "eslint": "^5.16.0",
-    "eslint-config-vtex": "^10.1.0",
     "prettier": "^1.16.4",
-    "tslint-eslint-rules": "^5.4.0",
-    "typescript": "3.7.3"
+    "typescript": "3.7.3",
+    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.1/public/@types/vtex.css-handles",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.109.3/public/@types/vtex.styleguide",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.91.0/public/@types/vtex.render-runtime",
+    "vtex.tenant-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.tenant-graphql@0.1.1/public/@types/vtex.tenant-graphql",
+    "vtex.store-icons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.16.0/public/@types/vtex.store-icons"
   },
   "version": "0.5.1"
 }

@@ -4,22 +4,17 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "lib": ["es2017", "dom"],
-    "module": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es2017",
     "skipLibCheck": true,
     "strict": true,
-    "types": ["node", "jest", "graphql"]
+    "types": ["node", "jest"]
   },
   "typeAcquisition": {
     "enable": false
   },
-  "include": [
-    "./typings/*.d.ts",
-    "./**/*.tsx",
-    "components/withImage.d.ts",
-    "Footer.js"
-  ],
+  "include": ["./typings/*.d.ts", "./**/*.tsx"],
   "exclude": ["node_modules"]
 }
