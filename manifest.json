@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "locale-switcher",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "title": "Locale Switcher",
   "description": "Locale Switcher",
   "defaultLocale": "pt-BR",
