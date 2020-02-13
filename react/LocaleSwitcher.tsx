@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import { useQuery } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 import { IconGlobe } from 'vtex.store-icons'
@@ -8,6 +8,7 @@ import Locales from './graphql/locales.gql'
 
 const CSS_HANDLES = [
   'container',
+  'relativeContainer',
   'button',
   'buttonText',
   'list',
@@ -60,7 +61,7 @@ function getSupportedLangs(langs: string[]) {
   }, [])
 }
 
-const LocaleSwitcher = () => {
+const LocaleSwitcher: FC = () => {
   const { data, loading, error } = useQuery<LocalesQuery>(Locales)
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
@@ -92,30 +93,34 @@ const LocaleSwitcher = () => {
 
   return (
     <div className={containerClasses}>
-      <button
-        className={buttonClasses}
-        onBlur={() => setOpenLocaleSelector(false)}
-        onClick={() => setOpenLocaleSelector(!openLocaleSelector)}>
-        <IconGlobe />
-        <span className={buttonTextClasses}>{selectedLocale.text}</span>
-      </button>
-      <ul hidden={!openLocaleSelector} className={listClasses}>
-        {supportedLangs
-          .filter(({ localeId }) => localeId !== selectedLocale.localeId)
-          .map(({ localeId, text }) => (
-            <li key={localeId} className={listElementClasses}>
-              <span
-                role="link"
-                tabIndex={-1}
-                className={`${handles.localeIdText} w-100`}
-                onMouseDown={e => e.preventDefault()}
-                onClick={() => handleLocaleClick(localeId)}
-                onKeyDown={() => handleLocaleClick(localeId)}>
-                {text}
-              </span>
-            </li>
-          ))}
-      </ul>
+      <div className={`${handles.relativeContainer} relative`}>
+        <button
+          className={buttonClasses}
+          onBlur={() => setOpenLocaleSelector(false)}
+          onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
+        >
+          <IconGlobe />
+          <span className={buttonTextClasses}>{selectedLocale.text}</span>
+        </button>
+        <ul hidden={!openLocaleSelector} className={listClasses}>
+          {supportedLangs
+            .filter(({ localeId }) => localeId !== selectedLocale.localeId)
+            .map(({ localeId, text }) => (
+              <li key={localeId} className={listElementClasses}>
+                <span
+                  role="link"
+                  tabIndex={-1}
+                  className={`${handles.localeIdText} w-100`}
+                  onMouseDown={e => e.preventDefault()}
+                  onClick={() => handleLocaleClick(localeId)}
+                  onKeyDown={() => handleLocaleClick(localeId)}
+                >
+                  {text}
+                </span>
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   )
 }
