@@ -26,6 +26,19 @@ declare module 'vtex.render-runtime' {
     id: string
   }
 
+  export interface Culture {
+    availableLocales: string[]
+    locale: string
+    language: string
+    country: string
+    currency: string
+  }
+
+  interface RenderContext {
+    culture: Culture
+    emitter: any
+  }
+
   export const ChildBlock: ComponentType<ChildBlockProps>
   export const useChildBlock = function({ id: string }): object {}
 
@@ -34,7 +47,7 @@ declare module 'vtex.render-runtime' {
   export const NoSSR: ReactElement
   export const RenderContextConsumer: ReactElement
   export const canUseDOM: boolean
-  export const useRuntime: any
+  export const useRuntime: () => RenderContext
   export const withRuntimeContext: <TOriginalProps extends {}>(
     Component: ComponentType<TOriginalProps & RenderContextProps>
   ) => ComponentType<TOriginalProps>
