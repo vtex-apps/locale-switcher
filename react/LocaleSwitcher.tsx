@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { Spinner } from 'vtex.styleguide'
+import { SupportedLanguage } from 'langs'
 import { IconGlobe } from 'vtex.store-icons'
 import { useCssHandles } from 'vtex.css-handles'
 import { useRuntime, Culture } from 'vtex.render-runtime'
-import { Spinner } from 'vtex.styleguide'
 
+import getLabel from './modules/getLabel'
 import LocaleSwitcherList from './components/LocaleSwitcherList'
 
 const CSS_HANDLES = [
@@ -17,33 +19,11 @@ const CSS_HANDLES = [
   'relativeContainer',
 ] as const
 
-export interface SupportedLanguage {
-  text: string
-  localeId: string
-}
-
-export function getLabel(localeId: string) {
-  return localeId.split('-')[0]
-}
-
 function parseToSupportedLang({ language, locale }: Culture) {
   return {
     text: getLabel(language),
     localeId: locale,
   }
-}
-
-export function getSupportedLangs(langs: string[]) {
-  return langs.reduce((acc: SupportedLanguage[], lang: string) => {
-    if (!lang.includes('-')) {
-      return acc
-    }
-
-    return acc.concat({
-      text: getLabel(lang),
-      localeId: lang,
-    })
-  }, [])
 }
 
 const LocaleSwitcher: React.FC = () => {

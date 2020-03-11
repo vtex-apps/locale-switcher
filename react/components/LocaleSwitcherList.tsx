@@ -1,14 +1,12 @@
 import React from 'react'
 import { useQuery } from 'react-apollo'
+import { SupportedLanguage } from 'langs'
 import { useCssHandles } from 'vtex.css-handles'
 
 import Spinner from './Spinner'
+import getLabel from '../modules/getLabel'
 import LOCALES from '../graphql/locales.gql'
-import {
-  getLabel,
-  SupportedLanguage,
-  getSupportedLangs,
-} from '../LocaleSwitcher'
+import getSupportedLangs from '../modules/getSupportedLangs'
 
 interface Props {
   open?: boolean
