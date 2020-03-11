@@ -2,9 +2,10 @@
 declare module 'vtex.styleguide' {
   import { ComponentType } from 'react'
 
-  export const Input: ComponentType<InputProps>
+  export const Input: ComponentType<Props>
+  export const Spinner: ComponentType<Props>
 
-  interface InputProps {
+  interface Props {
     [key: string]: any
   }
 }

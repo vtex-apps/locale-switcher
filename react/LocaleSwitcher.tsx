@@ -1,125 +1,85 @@
-import React, { useState, FC } from 'react'
-import { useQuery } from 'react-apollo'
-import { useRuntime } from 'vtex.render-runtime'
+import React, { useState } from 'react'
+import { Spinner } from 'vtex.styleguide'
+import { SupportedLanguage } from 'langs'
 import { IconGlobe } from 'vtex.store-icons'
 import { useCssHandles } from 'vtex.css-handles'
+import { useRuntime, Culture } from 'vtex.render-runtime'
 
-import Locales from './graphql/locales.gql'
+import getLabel from './modules/getLabel'
+import LocaleSwitcherList from './components/LocaleSwitcherList'
 
 const CSS_HANDLES = [
-  'container',
-  'relativeContainer',
-  'button',
-  'buttonText',
   'list',
+  'button',
+  'container',
+  'buttonText',
   'listElement',
   'localeIdText',
-]
+  'loadingContainer',
+  'relativeContainer',
+] as const
 
-interface LocalesQuery {
-  languages: {
-    default: string
-    supported: string[]
+function parseToSupportedLang({ language, locale }: Culture) {
+  return {
+    text: getLabel(language),
+    localeId: locale,
   }
-  currentBinding: {
-    supportedLocales: string[]
-  } | null
 }
 
-interface SupportedLanguage {
-  text: string
-  localeId: string
-}
-
-function getLabel(localeId: string) {
-  return localeId.split('-')[0]
-}
-
-function getLocale(supportedLangs: SupportedLanguage[], locale: string) {
-  const localeObj = supportedLangs.find(
-    ({ localeId }) => getLabel(localeId) === getLabel(locale)
-  )
-  return (
-    localeObj ??
-    (supportedLangs?.[0] || {
-      text: getLabel(locale),
-      localeId: locale,
-    })
-  )
-}
-
-function getSupportedLangs(langs: string[]) {
-  return langs.reduce((acc: SupportedLanguage[], lang: string) => {
-    if (!lang.includes('-')) {
-      return acc
-    }
-
-    return acc.concat({
-      text: getLabel(lang),
-      localeId: lang,
-    })
-  }, [])
-}
-
-const LocaleSwitcher: FC = () => {
-  const { data, loading, error } = useQuery<LocalesQuery>(Locales)
+const LocaleSwitcher: React.FC = () => {
   const { culture, emitter } = useRuntime()
-  const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [shouldRenderList, setShouldRenderList] = useState(false)
+  const [changingLocale, setChangingLocale] = useState(false)
 
-  const supportedLanguages =
-    data?.currentBinding?.supportedLocales ?? data?.languages?.supported ?? []
-  const supportedLangs = getSupportedLangs(supportedLanguages)
-
-  const [selectedLocale, setSelectedLocale] = useState(() =>
-    getLocale(supportedLangs, culture?.locale)
+  const [selectedLocale, setSelectedLocale] = useState(
+    parseToSupportedLang(culture)
   )
   const handles = useCssHandles(CSS_HANDLES)
 
-  const handleLocaleClick = (id: SupportedLanguage['localeId']) => {
-    setOpenLocaleSelector(false)
-    setSelectedLocale(getLocale(supportedLangs, id))
-    emitter.emit('localesChanged', id)
+  const handleLocaleClick = (newLang: SupportedLanguage) => {
+    setSelectedLocale(newLang)
+    emitter.emit('localesChanged', newLang.localeId)
+    setChangingLocale(true)
+    setOpen(false)
   }
 
-  if (loading || error || supportedLangs.length === 0) {
-    return null
+  const handleClick = () => {
+    setOpen(!open)
+
+    if (!shouldRenderList) {
+      setShouldRenderList(true)
+    }
   }
 
   const containerClasses = `${handles.container} w3 flex items-center justify-end ml2 mr3 relative`
   const buttonClasses = `${handles.button} link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base`
   const buttonTextClasses = `${handles.buttonText} pl2 t-action--small order-1`
-  const listClasses = `${handles.list} absolute z-5 list top-1 w3 ph0 mh0 mt4 bg-base`
-  const listElementClasses = `${handles.listElement} t-action--small pointer f5 pa3 hover-bg-muted-5 tc`
 
   return (
     <div className={containerClasses}>
       <div className={`${handles.relativeContainer} relative`}>
         <button
+          onClick={handleClick}
           className={buttonClasses}
-          onBlur={() => setOpenLocaleSelector(false)}
-          onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
+          onBlur={() => setOpen(false)}
         >
-          <IconGlobe />
-          <span className={buttonTextClasses}>{selectedLocale.text}</span>
+          {!changingLocale ? (
+            <>
+              <IconGlobe />
+              <span className={buttonTextClasses}>{selectedLocale.text}</span>
+            </>
+          ) : (
+            <Spinner handles={handles} size={26} />
+          )}
         </button>
-        <ul hidden={!openLocaleSelector} className={listClasses}>
-          {supportedLangs
-            .filter(({ localeId }) => localeId !== selectedLocale.localeId)
-            .map(({ localeId, text }) => (
-              <li key={localeId} className={listElementClasses}>
-                <span
-                  role="link"
-                  tabIndex={-1}
-                  className={`${handles.localeIdText} w-100`}
-                  onMouseDown={e => e.preventDefault()}
-                  onClick={() => handleLocaleClick(localeId)}
-                  onKeyDown={() => handleLocaleClick(localeId)}
-                >
-                  {text}
-                </span>
-              </li>
-            ))}
-        </ul>
+        {shouldRenderList && (
+          <LocaleSwitcherList
+            open={open}
+            onItemClick={handleLocaleClick}
+            selectedLocale={selectedLocale}
+          />
+        )}
       </div>
     </div>
   )
