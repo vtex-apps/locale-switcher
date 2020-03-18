@@ -1,5 +1,13 @@
 {
   "locale-switcher": {
     "component": "LocaleSwitcher"
+  },
+  "locale-switcher-list": {
+    "component": "SwitcherListV2",
+    "composition": "children"
+  },
+  "locale-switcher-item": {
+    "component": "SwitcherListItem",
+    "composition": "children"
   }
 }
