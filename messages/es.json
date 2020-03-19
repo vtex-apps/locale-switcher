@@ -1,1 +1,9 @@
-{}
+{
+  "admin/editor.locale-switcher.title": "ubicación disponible",
+  "admin/editor.locale-switcher.display.title": "Modo de visualización",
+  "admin/editor.locale-switcher.display.description": "Puedes usar esta propiedad para ocultar la opción seleccionada actualmente.",
+  "admin/editor.locale-switcher.display.default": "Estándar",
+  "admin/editor.locale-switcher.display.none": "No mostrar",
+  "admin/editor.locale-switcher.label.title": "Etiqueta",
+  "admin/editor.locale-switcher.label.description": "p.ej. \"EN, PT, ES, GA\""
+}

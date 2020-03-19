@@ -8,9 +8,9 @@
     "classnames": "^2.2.6",
     "ramda": "^0.26.1",
     "react": "^16.8.3",
-    "react-intl": "3.9.1",
+    "react-apollo": "^3.0.0",
     "react-dom": "^16.8.3",
-    "react-apollo": "^3.0.0"
+    "react-intl": "^4.1.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",

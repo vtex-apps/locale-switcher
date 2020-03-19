@@ -1,0 +1,25 @@
+{
+  "definitions": {
+    "SwitcherListItem": {
+      "title": "admin/editor.locale-switcher.title",
+      "properties": {
+        "display": {
+          "title": "admin/editor.locale-switcher.display.title",
+          "description": "admin/editor.locale-switcher.display.description",
+          "type": "string",
+          "enum": ["default", "none"],
+          "enumNames": [
+            "admin/editor.locale-switcher.display.default",
+            "admin/editor.locale-switcher.display.none"
+          ],
+          "default": "default"
+        },
+        "label": {
+          "title": "admin/editor.locale-switcher.label.title",
+          "description": "admin/editor.locale-switcher.label.description",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        }
+      }
+    }
+  }
+}

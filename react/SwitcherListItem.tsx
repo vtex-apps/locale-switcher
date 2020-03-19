@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import classnames from 'classnames'
+import { defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import { PopoverContext } from 'vtex.popover-layout'
@@ -63,4 +64,32 @@ export default function SwitcherListItem(props: Props) {
       {label && <span className={handles.itemLabel}>{label}</span>}
     </li>
   )
+}
+
+defineMessages({
+  title: {
+    id: 'admin/editor.locale-switcher.title',
+  },
+  displayTitle: {
+    id: 'admin/editor.locale-switcher.display.title',
+  },
+  displayDescription: {
+    id: 'admin/editor.locale-switcher.display.description',
+  },
+  displayDefault: {
+    id: 'admin/editor.locale-switcher.display.default',
+  },
+  displayNone: {
+    id: 'admin/editor.locale-switcher.display.none',
+  },
+  labelTitle: {
+    id: 'admin/editor.locale-switcher.label.title',
+  },
+  labelDescription: {
+    id: 'admin/editor.locale-switcher.label.description',
+  },
+})
+
+SwitcherListItem.schema = {
+  title: 'admin/editor.locale-switcher.title',
 }

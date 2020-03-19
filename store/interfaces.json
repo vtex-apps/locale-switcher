@@ -8,6 +8,9 @@
   },
   "locale-switcher-item": {
     "component": "SwitcherListItem",
-    "composition": "children"
+    "composition": "children",
+    "content": {
+      "$ref": "app:vtex.locale-switcher#/definitions/SwitcherListItem"
+    }
   }
 }
