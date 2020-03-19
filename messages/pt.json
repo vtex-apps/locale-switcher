@@ -1,9 +1,9 @@
 {
   "admin/editor.locale-switcher.title": "Localidade disponível",
   "admin/editor.locale-switcher.display.title": "Modo de exibição",
-  "admin/editor.locale-switcher.display.description": "Você deveria usar essa propriedade para esconder a opção atual selecionada.",
+  "admin/editor.locale-switcher.display.description": "Esconder opção atual.",
   "admin/editor.locale-switcher.display.default": "Padrão",
-  "admin/editor.locale-switcher.display.none": "Não mostrar",
+  "admin/editor.locale-switcher.display.none": "Esconder",
   "admin/editor.locale-switcher.label.title": "Título",
   "admin/editor.locale-switcher.label.description": "ex. \"EN, PT, ES, GA\""
 }

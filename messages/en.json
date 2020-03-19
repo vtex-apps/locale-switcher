@@ -1,9 +1,9 @@
 {
-  "admin/editor.locale-switcher.title": "Available location",
+  "admin/editor.locale-switcher.title": "Available locale",
   "admin/editor.locale-switcher.display.title": "Display mode",
-  "admin/editor.locale-switcher.display.description": "You can use this property to hide bindings when they are the current selected.",
+  "admin/editor.locale-switcher.display.description": "You can use this property to hide the currently selected binding.",
   "admin/editor.locale-switcher.display.default": "Default",
-  "admin/editor.locale-switcher.display.none": "Don't show",
+  "admin/editor.locale-switcher.display.none": "Hide",
   "admin/editor.locale-switcher.label.title": "Label",
   "admin/editor.locale-switcher.label.description": "e.g. \"EN, PT, ES, GA\""
 }

@@ -8,7 +8,7 @@ The VTEX LocaleSwitcher is a VTEX component capable of changing the current lang
 
 ## Configuration
 
-1. Import the locale-switcher's app to your theme's dependencies in the `manifest.json`, for example:
+1. Import the `locale-switcher`'s app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
 "dependencies": {
@@ -29,9 +29,30 @@ The VTEX LocaleSwitcher is a VTEX component capable of changing the current lang
 },
 ```
 
+### locale-swicher-list
+
+This block doesn't have any prop, you just have to use it and pass the `locale-switcher-item` as `children` of it.
+
+### locale-switcher-item
+
+The options of languages. This block accepts a `label` or you can pass `children` to it in case you want to render something like a country flag.
+
+| Prop name | Type | Description | Default value |
+| --- | --- | --- | --- |
+| `label` | `string` | Label of the item e.g. `EN, PT, JA, ES`... | `undefined` |
+| `localeId` | `string` | The id of the locale | - |
+| `display` | `DisplayMode` | The id of the locale | `'default'` |
+
+### DisplayMode
+
+| Value | Description |
+| --- | --- |
+| `'default'` | It will just render the element |
+| `'none'` | It won't render anything |
+
 ## Customization
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+To apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
 | CSS Handles         |
 | ------------------- |
