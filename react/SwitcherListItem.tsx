@@ -14,11 +14,11 @@ interface Props {
   display?: DisplayMode
 }
 
-const CSS_HANDLES = ['listItem', 'itemLabel', 'contentWrapper']
+const CSS_HANDLES = ['listItem', 'itemLabel', 'contentWrapper'] as const
 
 const { usePopoverDispatch } = PopoverContext
 
-export default function SwitcherListItem(props: Props) {
+function SwitcherListItem(props: Props) {
   const { children, label, localeId, display = 'default' } = props
   const handles = useCssHandles(CSS_HANDLES)
   const { emitter } = useRuntime()
@@ -47,9 +47,14 @@ export default function SwitcherListItem(props: Props) {
     return null
   }
 
+  const hasChildren = React.Children.toArray(children).length > 0
+
   const classes = classnames(
     handles.listItem,
-    'ph6 pv3 hover-bg-muted-5 pointer outline-0'
+    'ph6 pv3 hover-bg-muted-5 pointer outline-0',
+    {
+      flex: hasChildren,
+    }
   )
 
   return (
@@ -60,7 +65,7 @@ export default function SwitcherListItem(props: Props) {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      {children && <div className={handles.contentWrapper}>{children}</div>}
+      {hasChildren && <div className={handles.contentWrapper}>{children}</div>}
       {label && <span className={handles.itemLabel}>{label}</span>}
     </li>
   )
@@ -93,3 +98,5 @@ defineMessages({
 SwitcherListItem.schema = {
   title: 'admin/editor.locale-switcher.title',
 }
+
+export default SwitcherListItem
