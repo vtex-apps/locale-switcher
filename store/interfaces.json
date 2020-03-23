@@ -3,7 +3,7 @@
     "component": "LocaleSwitcher"
   },
   "locale-switcher-list": {
-    "component": "SwitcherListV2",
+    "component": "SwitcherList",
     "composition": "children"
   },
   "locale-switcher-item": {

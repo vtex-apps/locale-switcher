@@ -61,7 +61,7 @@ function moveFocus(
   }
 }
 
-export default function SwitcherListV2(props: Props) {
+function SwitcherList(props: Props) {
   const { children } = props
   const handles = useCssHandles(CSS_HANDLES)
   const listRef = useRef<HTMLUListElement>(null)
@@ -104,3 +104,9 @@ export default function SwitcherListV2(props: Props) {
     </ul>
   )
 }
+
+SwitcherList.schema = {
+  title: 'Switcher List',
+}
+
+export default SwitcherList
