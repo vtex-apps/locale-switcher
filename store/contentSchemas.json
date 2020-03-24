@@ -2,6 +2,7 @@
   "definitions": {
     "SwitcherListItem": {
       "title": "admin/editor.locale-switcher.title",
+      "type": "object",
       "properties": {
         "display": {
           "title": "admin/editor.locale-switcher.display.title",

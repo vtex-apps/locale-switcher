@@ -105,8 +105,4 @@ function SwitcherList(props: Props) {
   )
 }
 
-SwitcherList.schema = {
-  title: 'Switcher List',
-}
-
 export default SwitcherList
