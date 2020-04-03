@@ -80,14 +80,15 @@ export default function LocaleSwitcherList(props: Props) {
             role="link"
             tabIndex={-1}
             key={localeId}
-            className={listElementClasses}
+            className={`${listElementClasses} ${handles.listElement}--${text}`}
             onClick={() => handleItemClick(localeId)}
             onKeyDown={() => handleItemClick(localeId)}
             onMouseDown={e => e.preventDefault()}
           >
             <span className={`${handles.localeIdText} w-100`}>{text}</span>
           </li>
-        ))}
-    </ul>
+        ))
+      }
+    </ul >
   )
 }

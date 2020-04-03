@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.0] - 2020-04-03
+### Added
+- LocaleIdText in element item className.
+
 ## [0.5.5] - 2020-03-11
 ### Added
 - Loading state when the query is being made.
