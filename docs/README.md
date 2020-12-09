@@ -5,18 +5,18 @@
 
 # Locale Switcher
 
-The VTEX LocaleSwitcher is a VTEX component capable of changing the current language of the store.
+The Locale Switcher app provides a component capable of changing the current language of your store.
 
 ![img-locale-switcher](https://user-images.githubusercontent.com/27777263/74359290-c2b5f700-4da1-11ea-8612-c05ccf1988d5.png)
 
 ## Configuration
 
-1. Import the locale-switcher's app to your theme's dependencies in the `manifest.json`, for example:
+1. Add the Locale Switcher app to your theme's dependencies in the `manifest.json` file:
 
-```json
-"dependencies": {
-  "vtex.locale-switcher": "0.x"
-}
+```diff
+ "dependencies": {
++  "vtex.locale-switcher": "0.x"
+ }
 ```
 
 2. Add the `locale-switcher` block to your header. For example:
@@ -32,12 +32,16 @@ The VTEX LocaleSwitcher is a VTEX component capable of changing the current lang
 },
 ```
 
+3. Open a ticket to our support team in order to adjust your store's binding with the desired languages. 
+
+> ⚠️ ***Caution:** The third step is mandatory. If no ticket is opened requiring the desired languages, the selection list may not appear on the Locale Switcher component.*
+
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
 | CSS Handles         |
-| ------------------- |
+| :-----------------: |
 | `button`            |
 | `buttonText`        |
 | `container`         |
@@ -48,7 +52,7 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
