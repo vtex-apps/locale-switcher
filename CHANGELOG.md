@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Update app documentation (`README.md` file)
 
+### Security
+- Bump acorn from 5.7.3 to 5.7.4.
+
 ## [0.5.5] - 2020-03-11
 ### Added
 - Loading state when the query is being made.
